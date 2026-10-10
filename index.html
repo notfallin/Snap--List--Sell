@@ -117,5 +117,21 @@ body {
   <span class="small">Things you decided to keep.</span>
 </div>
 
+<input type="file" id="photoInput" accept="image/*" capture="environment" style="display:none">
+
+<script>
+const photoInput = document.getElementById('photoInput');
+
+document.querySelector('.photo-button').addEventListener('click', function() {
+  photoInput.click();
+});
+
+photoInput.addEventListener('change', function() {
+  if (this.files && this.files[0]) {
+    alert('Photo selected! Next, we will add item identification and value estimation.');
+  }
+});
+</script>
+
   </div></div></body>
 </html>
