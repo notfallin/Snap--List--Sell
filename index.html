@@ -137,9 +137,19 @@ document.querySelector('.photo-button').addEventListener('click', function() {
 });
 
 document.querySelector('.snap-button').addEventListener('click', function() {
-  photoInput.click();
+  const cameraInput = document.createElement('input');
+  cameraInput.type = 'file';
+  cameraInput.accept = 'image/*';
+  cameraInput.setAttribute('capture', 'environment');
+  cameraInput.addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+      preview.src = URL.createObjectURL(this.files[0]);
+      preview.style.display = 'block';
+      alert('Photo captured! Next, we will add item identification and value estimation.');
+    }
+  });
+  cameraInput.click();
 });
-
 photoInput.addEventListener('change', function() {
   if (this.files && this.files[0]) {
     if (preview.src) {
