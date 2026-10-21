@@ -119,34 +119,38 @@ body {
 
 <input type="file" id="photoInput" accept="image/*" style="display:none">
 
-<script>
+    <script>
 const photoInput = document.getElementById('photoInput');
+
+const preview = document.createElement('img');
+preview.id = 'photoPreview';
+preview.style.width = '100%';
+preview.style.maxWidth = '400px';
+preview.style.marginTop = '15px';
+preview.style.borderRadius = '12px';
+preview.style.display = 'none';
+
+document.querySelector('.container').appendChild(preview);
 
 document.querySelector('.photo-button').addEventListener('click', function() {
   photoInput.click();
 });
-    let preview = document.getElementById('photoPreview');
 
-    if (!preview) {
-      preview = document.createElement('img');
-      preview.id = 'photoPreview';
-      preview.style.width = '100%';
-      preview.style.maxWidth = '400px';
-      preview.style.marginTop = '15px';
-      preview.style.borderRadius = '12px';
-      preview.style.display = 'block';
-document.querySelector('.container').appendChild(preview);
+document.querySelector('.snap-button').addEventListener('click', function() {
+  photoInput.click();
+});
 
-
-
-      photoInput.addEventListener('change', function() {
+photoInput.addEventListener('change', function() {
   if (this.files && this.files[0]) {
+    if (preview.src) {
+      URL.revokeObjectURL(preview.src);
+    }
+
     preview.src = URL.createObjectURL(this.files[0]);
     preview.style.display = 'block';
     alert('Photo selected! Next, we will add item identification and value estimation.');
   }
 });
-
-
+    </script>
   </div></div></body>
 </html>
