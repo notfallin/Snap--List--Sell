@@ -135,16 +135,18 @@ document.querySelector('.photo-button').addEventListener('click', function() {
       preview.style.marginTop = '15px';
       preview.style.borderRadius = '12px';
       preview.style.display = 'block';
-      document.querySelector('main')?.appendChild(preview);
-    }
+document.querySelector('.container').appendChild(preview);
 
-    preview.src = URL.createObjectURL(this.files[0]);
-photoInput.addEventListener('change', function() {
+
+
+      photoInput.addEventListener('change', function() {
   if (this.files && this.files[0]) {
+    preview.src = URL.createObjectURL(this.files[0]);
+    preview.style.display = 'block';
     alert('Photo selected! Next, we will add item identification and value estimation.');
   }
 });
-</script>
+
 
   </div></div></body>
 </html>
